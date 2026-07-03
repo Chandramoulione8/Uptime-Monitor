@@ -12,9 +12,11 @@ Users can add websites to be monitored, view their current status, measure respo
 
 ---
 
+
+
 ## 📸 Dashboard Preview
 
-![Uptime Monitor Dashboard](assets/dashboard.png)
+![Uptime Monitor Dashboard](dashboard.png)
 
 # ✨ Features
 
