@@ -1,6 +1,6 @@
 import requests
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -34,7 +34,7 @@ def check_urls():
                 url_id=item.id,
                 status_code=response.status_code,
                 response_time=response_time,
-                checked_at=datetime.utcnow()
+                checked_at=datetime.now(timezone.utc)
             )
 
             db.add(health)
@@ -44,11 +44,11 @@ def check_urls():
             print(item.url, "DOWN")
 
             health = HealthCheck(
-                url_id=item.id,
-                status_code=0,
-                response_time=0,
-                checked_at=datetime.utcnow()
-            )
+    url_id=item.id,
+    status_code=0,
+    response_time=0,
+    checked_at=datetime.now(timezone.utc)
+)
 
             db.add(health)
 
@@ -62,5 +62,5 @@ def check_urls():
 scheduler.add_job(
     check_urls,
     "interval",
-    seconds=30
+    seconds=5
 )
